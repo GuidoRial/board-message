@@ -11,7 +11,7 @@ function SignUp() {
     const handleSignUp = (e) => {
         e.preventDefault();
     };
-
+    
     return (
         <section className="sign-up">
             <h1>BoardMessage</h1>
