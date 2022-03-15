@@ -13,7 +13,6 @@ function SignUp() {
 
     useEffect(() => {
         //check if user exists in database
-        
     },[username]);
 
     const handleSignUp = async (e) => {
