@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { linkStyle } from "../../aux";
+import { linkStyle } from "../../auxFunctions";
 import "./SignUp.css";
 
 function SignUp() {
