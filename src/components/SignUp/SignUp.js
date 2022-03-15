@@ -1,15 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { linkStyle } from "../../auxFunctions";
 import "./SignUp.css";
+import { firebase, firestore } from "../../firebase";
 
 function SignUp() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    //form validation, username validation (check if it exists in database)
+    const [usernameIsValid, setUsernameIsValid] = useState(false);
 
-    const handleSignUp = (e) => {
-        e.preventDefault();
+    useEffect(() => {
+        //check if user exists in database
+        
+    },[username]);
+
+    const handleSignUp = async (e) => {
+        try {
+            e.preventDefault();
+            const createdUserResult = await firebase
+                .auth()
+                .createUserWithEmailAndPassword(email, password);
+
+            await createdUserResult.user.updateProfile({
+                displayName: username,
+            });
+
+            await firestore.collection("users").add({
+                userId: createdUserResult.user.uid,
+                username: username,
+                emailAddress: email,
+                dateCreated: Date.now,
+                about: "Developed by GuidoRial and FedeSca001",
+                profilePicture: "",
+            });
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
