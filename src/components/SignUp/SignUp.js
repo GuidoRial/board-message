@@ -39,7 +39,7 @@ function SignUp() {
             console.error(error);
         }
     };
-
+    
     return (
         <section className="sign-up">
             <h1>BoardMessage</h1>
