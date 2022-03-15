@@ -1,8 +1,14 @@
 :root {
     --primary-color: #4b1585;
+    --primary-color-hover: #643497;
     --secondary-color: #4ebb5e;
     --complementary-color: #fbe8c6;
     --primary-text: #141414;
     --secondary-text: #d3d3d3;
     --white: #fbfbfb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
 }
