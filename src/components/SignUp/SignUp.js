@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { linkStyle } from "../../auxFunctions";
+import { clearInputs, linkStyle } from "../../auxFunctions";
 import "./SignUp.css";
 import { firebase, firestore } from "../../firebase";
 
@@ -58,10 +58,10 @@ function SignUp() {
                 userId: createdUserResult.user.uid,
                 username: username,
                 emailAddress: email,
-                dateCreated: Date.now,
                 about: "Developed by GuidoRial and FedeSca001",
                 profilePicture: "",
             });
+            await clearInputs()
         } catch (error) {
             console.error(error);
         }
