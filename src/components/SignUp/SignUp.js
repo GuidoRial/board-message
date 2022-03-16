@@ -74,7 +74,7 @@ function SignUp() {
         <section className="sign-up">
             <h1>BoardMessage</h1>
             <div className="form-container">
-                <form onSubmit={handleSignUp}>
+                <form className="sign-up-form" onSubmit={handleSignUp}>
                     <input
                         className="input-field"
                         id="username"

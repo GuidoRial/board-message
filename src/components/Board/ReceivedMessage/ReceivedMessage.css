@@ -1,0 +1,21 @@
+.talktext-message-received {
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    padding: 0.5em 1em;
+    text-align: left;
+    line-height: 1.5em;
+}
+
+.talk-bubble-message-received {
+    margin: 1rem 1.5rem;
+    display: inline-block;
+    position: relative;
+    width: auto;
+    max-width: 350px;
+    height: auto;
+    border-radius: 15px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    justify-content: left;
+    margin-right: auto;
+}
