@@ -7,8 +7,6 @@ const LogIn = () => {
   const [userValid, setUserValid] = useState(false)
   const [passwordValid, setpasswordValid] = useState(false)
 
-
-
   //Validar username
   useEffect(()=>{
     //acá verifica que exista el usuario
@@ -27,7 +25,6 @@ const LogIn = () => {
   }
 
   return (
-<<<<<<< HEAD
   <section className="sign-up">
       <h1>BoardMessage</h1>
       <div className="form-container">
@@ -55,18 +52,6 @@ const LogIn = () => {
         </form>
       </div>
   </section>
-=======
-    <div>
-      <form>
-      <input
-        className="input-field" 
-        id="username"
-        type="text"
-        placeholder="Ingrese mail"/>
-      <input/>
-      </form>
-    </div>
->>>>>>> 4c7706a5a71fa63096e99f63fdf774d0472385e1
   )
 }
 
