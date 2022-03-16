@@ -21,7 +21,7 @@ function SignUp() {
         //check if user exists in database
         setUsernameIsInDatabase(false);
     }, [username]);
-    
+
     const handleSignUp = async (e) => {
         if (username.length < 3 || username.length > 12) {
             e.preventDefault();
@@ -61,7 +61,10 @@ function SignUp() {
                 about: "Developed by GuidoRial and FedeSca001",
                 profilePicture: "",
             });
-            await clearInputs()
+            await clearInputs();
+            setEmail("");
+            setPassword("");
+            setUsername("");
         } catch (error) {
             console.error(error);
         }
