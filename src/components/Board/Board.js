@@ -7,10 +7,8 @@ import { signOut } from "firebase/auth";
 import { authService } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
-
 function Board({ user, activeUser }) {
-
-    const [newMess, setNewMess]=useState('')
+    const [newMess, setNewMess] = useState("");
     const navigate = useNavigate();
     const handleLogOut = async () => {
         try {
@@ -21,13 +19,10 @@ function Board({ user, activeUser }) {
         }
     };
 
-
     const getFirstLetter = () => {
-        let firstLeterOfUsername = activeUser.username[0].toUpperCase();
-        return firstLeterOfUsername;
+        let firstLetterOfUsername = activeUser.username[0].toUpperCase();
+        return firstLetterOfUsername;
     };
-
-
 
     useEffect(() => {
         if (!user) {
@@ -112,11 +107,13 @@ function Board({ user, activeUser }) {
                             autoComplete="on"
                             placeholder="Message"
                             className="message-input"
-                            onChange={(e)=>{setNewMess(e.target.value)}}>
-                        </textarea>
-                        <button
-                            type="submit"
-                            id="sendMessage">SEND</button>
+                            onChange={(e) => {
+                                setNewMess(e.target.value);
+                            }}
+                        ></textarea>
+                        <button type="submit" id="sendMessage">
+                            SEND
+                        </button>
                     </form>
                 </main>
             </section>
