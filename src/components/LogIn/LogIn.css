@@ -1,0 +1,20 @@
+.check-box {
+    color: var(--primary-text);
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 0.5rem;
+}
+.check-box:active {
+    border: 1px solid var(--primary-color);
+}
+.demo-butt{
+    font-size: 0.8rem;
+    width: 60%;
+    height: 1.7rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+}

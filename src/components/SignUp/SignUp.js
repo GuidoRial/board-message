@@ -19,6 +19,7 @@ function SignUp() {
 
     useEffect(() => {
         //check if user exists in database
+
         setUsernameIsInDatabase(false);
     }, [username]);
 
@@ -69,7 +70,7 @@ function SignUp() {
             console.error(error);
         }
     };
-
+    
     return (
         <section className="sign-up">
             <h1>BoardMessage</h1>
