@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Chat from "./Chat/Chat";
 import "./Board.css";
 import ReceivedMessage from "./ReceivedMessage/ReceivedMessage";
@@ -7,7 +7,10 @@ import { signOut } from "firebase/auth";
 import { authService } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
+
 function Board({ user, activeUser }) {
+
+    const [newMess, setNewMess]=useState('')
     const navigate = useNavigate();
     const handleLogOut = async () => {
         try {
@@ -18,12 +21,13 @@ function Board({ user, activeUser }) {
         }
     };
 
+
     const getFirstLetter = () => {
         let firstLeterOfUsername = activeUser.username[0].toUpperCase();
         return firstLeterOfUsername;
     };
 
-    console.log();
+
 
     useEffect(() => {
         if (!user) {
@@ -31,7 +35,6 @@ function Board({ user, activeUser }) {
         }
     }, [user]);
 
-    //Get chats where this user is involved
     return (
         <div className="board-container">
             <section className="board">
@@ -105,12 +108,15 @@ function Board({ user, activeUser }) {
                         <SentMessage />
                     </div>
                     <form className="send-message-form">
-                        <input
+                        <textarea
+                            autoComplete="on"
                             placeholder="Message"
                             className="message-input"
-                            type="text"
-                        />
-                        <button id="sendMessage">SEND</button>
+                            onChange={(e)=>{setNewMess(e.target.value)}}>
+                        </textarea>
+                        <button
+                            type="submit"
+                            id="sendMessage">SEND</button>
                     </form>
                 </main>
             </section>

@@ -86,10 +86,11 @@
 }
 
 .message-input {
-    width: 100%;
+    max-width: 60vw;
+    max-height: 2vw;
     padding: 0.3rem;
-    height: auto;
     border-radius: 5px;
+    margin-right: 2vw;
 }
 
 #sendMessage {
