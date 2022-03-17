@@ -4,12 +4,13 @@ import { authService } from "../../firebase";
 import "./LogIn.css";
 import { Link, useNavigate } from "react-router-dom";
 import { clearInputs, linkStyle } from "../../auxFunctions";
+import imglogo from '../../assets/logoInit.jpg'
 
 const LogIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const disableButton = email === "" || password === "";
-    let navigate = useNavigate;
+    let navigate = useNavigate();
 
     let demoUserEmail;
     let demoUserPassword;
@@ -34,8 +35,9 @@ const LogIn = () => {
     };
 
     return (
+        <div className="contain-logIn-sign-up">
         <section className="sign-up-log-in">
-            <h1>BoardMessage</h1>
+            <img src={imglogo} alt="logopng" className="img-logo"/>
             <div className="form-container">
                 <form className="form" onSubmit={handleLogIn}>
                     <input
@@ -67,9 +69,6 @@ const LogIn = () => {
                     <button className="form-button" id="demoUserButton">
                         DEMO USER
                     </button>
-                    <button className="form-button" id="demoUserButton">
-                        DEMO USER 2
-                    </button>
                     <div className="account-check">
                         <p>Don't have an account?</p>
                         <Link to="/signup" style={linkStyle}>
@@ -79,6 +78,7 @@ const LogIn = () => {
                 </form>
             </div>
         </section>
+        </div>
     );
 };
 
