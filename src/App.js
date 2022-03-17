@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import SignUp from "./components/SignUp/SignUp";
 import LogIn from "./components/LogIn/LogIn";
 import Board from "./components/Board/Board";
 import { authService, firestore } from "./firebase";
-import { signOut } from "firebase/auth";
 
 function App() {
     const [user, setUser] = useState(null); //User from auth
     const [activeUser, setActiveUser] = useState({}); //User object that you get with firebase's listener
-
-    //1 listener de Firebase que detecta si hay usuarios conectados o no y de donde vienen
 
     useEffect(() => {
         const unsuscribe = authService.onAuthStateChanged(async (authUser) => {
@@ -20,7 +17,7 @@ function App() {
                 await setUser(authUser);
 
                 const result = await firestore
-                    .collections("users")
+                    .collection("users")
                     .where("userId", "==", user.uid)
                     .get();
 
@@ -43,17 +40,26 @@ function App() {
     }, [user]);
 
     console.log(user);
+    console.log(activeUser)
 
     return (
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    {user ? (
-                        <Route path="/" element={<Board />} />
-                    ) : (
-                        <Route path="/login" element={<LogIn />} />
-                    )}
-                    <Route path="/signup" element={<SignUp />} />
+                    <Route
+                        path="/"
+                        element={<Board user={user} activeUser={activeUser} />}
+                    />
+
+                    <Route
+                        path="/login"
+                        element={<LogIn user={user} activeUser={activeUser} />}
+                    />
+
+                    <Route
+                        path="/signup"
+                        element={<SignUp user={user} activeUser={activeUser} />}
+                    />
                 </Routes>
             </BrowserRouter>
         </div>

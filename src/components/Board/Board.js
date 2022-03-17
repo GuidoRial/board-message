@@ -7,9 +7,10 @@ import { signOut } from "firebase/auth";
 import { authService } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
-function Board() {
-    const [newMess, setNewMess]=useState('')
 
+function Board({ user, activeUser }) {
+
+    const [newMess, setNewMess]=useState('')
     const navigate = useNavigate();
     const handleLogOut = async () => {
         try {
@@ -20,6 +21,19 @@ function Board() {
         }
     };
 
+
+    const getFirstLetter = () => {
+        let firstLeterOfUsername = activeUser.username[0].toUpperCase();
+        return firstLeterOfUsername;
+    };
+
+
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/login");
+        }
+    }, [user]);
 
     return (
         <div className="board-container">
@@ -57,12 +71,22 @@ function Board() {
                 <main className="individual-chat">
                     <header className="individual-chat-header">
                         <div className="selected-user">
-                            <div className="profile-picture header-profile-picture">
-                                U
-                            </div>
+                            {activeUser.profilePicture ? (
+                                <img
+                                    src={activeUser.profilePicture}
+                                    alt="user-profile"
+                                />
+                            ) : (
+                                <div className="profile-picture header-profile-picture">
+                                    {getFirstLetter()}
+                                </div>
+                            )}
+
                             <div>
-                                <p className="username">username</p>
-                                <p>Developed by GuidoRial and FedeSca001</p>
+                                <p className="username">
+                                    {activeUser.username}
+                                </p>
+                                <p>{activeUser.about}</p>
                             </div>
                         </div>
                     </header>
