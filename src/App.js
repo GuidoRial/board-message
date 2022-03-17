@@ -6,8 +6,8 @@ import LogIn from "./components/LogIn/LogIn";
 import Board from "./components/Board/Board";
 
 function App() {
-    const [user, setUser] = useState(false);
-    const [activeUser, setActiveUser] = useState(false);
+    const [user, setUser] = useState(true);
+    const [activeUser, setActiveUser] = useState(true);
 
     return (
         <div className="App">

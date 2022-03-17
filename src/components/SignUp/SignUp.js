@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { linkStyle } from "../../auxFunctions";
+import { clearInputs, linkStyle } from "../../auxFunctions";
 import "./SignUp.css";
 import { firebase, firestore } from "../../firebase";
 
@@ -8,14 +8,43 @@ function SignUp() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    //form validation, username validation (check if it exists in database)
-    const [usernameIsValid, setUsernameIsValid] = useState(false);
+
+    const [usernameIsInDatabase, setUsernameIsInDatabase] = useState(false);
+    const [usernameIsValid, setUsernameIsValid] = useState(null);
+
+    const [emailIsValid, setEmailIsValid] = useState(null);
+    const [passwordIsValid, setPasswordIsValid] = useState(null);
+
+    const disableButton = username === "" || email === "" || password === "";
 
     useEffect(() => {
         //check if user exists in database
-    },[username]);
+
+        setUsernameIsInDatabase(false);
+    }, [username]);
 
     const handleSignUp = async (e) => {
+        if (username.length < 3 || username.length > 12) {
+            e.preventDefault();
+            setUsernameIsValid(false);
+            setTimeout(() => {
+                setUsernameIsValid(null);
+            }, 5000);
+        }
+        if (!email.includes("@") || email.length < 3) {
+            e.preventDefault();
+            setEmailIsValid(false);
+            setTimeout(() => {
+                setEmailIsValid(null);
+            }, 5000);
+        }
+        if (password.length < 6 || password.length > 20) {
+            e.preventDefault();
+            setPasswordIsValid(false);
+            setTimeout(() => {
+                setPasswordIsValid(null);
+            }, 5000);
+        }
         try {
             e.preventDefault();
             const createdUserResult = await firebase
@@ -30,10 +59,13 @@ function SignUp() {
                 userId: createdUserResult.user.uid,
                 username: username,
                 emailAddress: email,
-                dateCreated: Date.now,
                 about: "Developed by GuidoRial and FedeSca001",
                 profilePicture: "",
             });
+            await clearInputs();
+            setEmail("");
+            setPassword("");
+            setUsername("");
         } catch (error) {
             console.error(error);
         }
@@ -43,7 +75,7 @@ function SignUp() {
         <section className="sign-up">
             <h1>BoardMessage</h1>
             <div className="form-container">
-                <form onSubmit={handleSignUp}>
+                <form className="sign-up-form" onSubmit={handleSignUp}>
                     <input
                         className="input-field"
                         id="username"
@@ -51,6 +83,16 @@ function SignUp() {
                         placeholder="Enter your username..."
                         onChange={(e) => setUsername(e.target.value)}
                     />
+                    {usernameIsValid === false && (
+                        <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
+                            Username should be between 3 and 12 characters
+                        </p>
+                    )}
+                    {usernameIsInDatabase && (
+                        <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
+                            Username is already in use
+                        </p>
+                    )}
                     <input
                         className="input-field"
                         id="email"
@@ -58,6 +100,11 @@ function SignUp() {
                         placeholder="Enter your e-mail..."
                         onChange={(e) => setEmail(e.target.value)}
                     />
+                    {emailIsValid === false && (
+                        <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
+                            E-mail is not valid
+                        </p>
+                    )}
                     <input
                         className="input-field"
                         id="password"
@@ -65,12 +112,26 @@ function SignUp() {
                         placeholder="Enter your password..."
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button type="submit" id="create-account">
+                    {passwordIsValid === false && (
+                        <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
+                            Password is not valid
+                        </p>
+                    )}
+                    <button
+                        disabled={disableButton}
+                        type="submit"
+                        id="create-account"
+                        style={
+                            disableButton
+                                ? { opacity: "0.5" }
+                                : { opacity: "1" }
+                        }
+                    >
                         Create Account
                     </button>
                 </form>
                 <div className="have-an-account">
-                    <p>Already have an account?</p>{" "}
+                    <p>Already have an account?</p>
                     <Link to="/login" style={linkStyle}>
                         Log In
                     </Link>

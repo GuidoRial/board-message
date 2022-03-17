@@ -17,43 +17,19 @@ State management:
 
 2. Sign Up (Guido)
     *   Logo with <BoardMessage />
-    *   Form
-        *   username
-        *   email
-        *   password
-        *   Create account
-    *   Already have an account? Log in (link to Log In)
-State management: 
-1. email
-2. password
-3. username
+    *   Function that redirects you to dashboard when you sign up
+    *   Save that data and get the userObject
 
 3. Board
     *   Header
-        *   Buscador de usuarios
+        *   Function to search for users in database
+        *   When you click on Header an aside shows up with user recommendations
     *   Aside
-        *   Foto, username, edit button (react-icons)
-        *   Historial
-        Cada chat es un componente
+        *   When you click on an user, a chat shows up with a history of messages
     *   Main content
         *   Header
-            *   Profile picture
-            *   Username
+            *   Get user data from database an display it
         *   Chat
-            *   Componente
-            *   Formulario con input type="text" y un send button
-State management: 
-1. This user
-    *   Profile picture
-    *   username
-    *   Chats
-    
+            *   Function that stores form data and adds it to the history messages, which are sorted chronologically in state so that it updates any time there's a change in database
 
-
-
-
-4. User logic with React Router
-5. State Management
-    *   This User
-        *   
 

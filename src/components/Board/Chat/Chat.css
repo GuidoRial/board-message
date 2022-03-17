@@ -1,0 +1,36 @@
+.chat {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+    background-color: var(--complementary-color);
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.chat:hover {
+    background-color: rgb(245, 209, 143);
+}
+
+.profile-picture {
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.history-profile-picture {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.username {
+    font-weight: 700;
+}
+
+.messages-container {
+    width: 100%;
+    height: auto;
+}
