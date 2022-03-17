@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Chat from "./Chat/Chat";
 import "./Board.css";
 import ReceivedMessage from "./ReceivedMessage/ReceivedMessage";
@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { authService } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
-function Board() {
+function Board({ user, activeUser }) {
     const navigate = useNavigate();
     const handleLogOut = async () => {
         try {
@@ -18,6 +18,20 @@ function Board() {
         }
     };
 
+    const getFirstLetter = () => {
+        let firstLeterOfUsername = activeUser.username[0].toUpperCase();
+        return firstLeterOfUsername;
+    };
+
+    console.log();
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/login");
+        }
+    }, [user]);
+
+    //Get chats where this user is involved
     return (
         <div className="board-container">
             <section className="board">
@@ -54,12 +68,22 @@ function Board() {
                 <main className="individual-chat">
                     <header className="individual-chat-header">
                         <div className="selected-user">
-                            <div className="profile-picture header-profile-picture">
-                                U
-                            </div>
+                            {activeUser.profilePicture ? (
+                                <img
+                                    src={activeUser.profilePicture}
+                                    alt="user-profile"
+                                />
+                            ) : (
+                                <div className="profile-picture header-profile-picture">
+                                    {getFirstLetter()}
+                                </div>
+                            )}
+
                             <div>
-                                <p className="username">username</p>
-                                <p>Developed by GuidoRial and FedeSca001</p>
+                                <p className="username">
+                                    {activeUser.username}
+                                </p>
+                                <p>{activeUser.about}</p>
                             </div>
                         </div>
                     </header>

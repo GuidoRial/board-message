@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { clearInputs, linkStyle } from "../../auxFunctions";
 import "./SignUp.css";
 import { firebase, firestore } from "../../firebase";
 
-function SignUp() {
+function SignUp({ user, activeUser }) {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -16,6 +16,8 @@ function SignUp() {
     const [passwordIsValid, setPasswordIsValid] = useState(null);
 
     const disableButton = username === "" || email === "" || password === "";
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         //check if user exists in database
@@ -70,7 +72,13 @@ function SignUp() {
             console.error(error);
         }
     };
-    
+
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [user]);
+
     return (
         <section className="sign-up-log-in">
             <h1>BoardMessage</h1>

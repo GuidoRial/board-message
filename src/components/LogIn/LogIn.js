@@ -1,37 +1,48 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { authService } from "../../firebase";
 import "./LogIn.css";
 import { Link, useNavigate } from "react-router-dom";
 import { clearInputs, linkStyle } from "../../auxFunctions";
 
-const LogIn = () => {
+const LogIn = ({ user, activeUser }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const disableButton = email === "" || password === "";
-    let navigate = useNavigate;
+    let navigate = useNavigate();
 
-    let demoUserEmail;
-    let demoUserPassword;
-    let demoUserTwoEmail;
-    let demoUserTwoPassword;
-
-    
+    let demoUserEmail = "demouser@gmail.com";
+    let demoUserPassword = "demouser";
 
     const handleLogIn = async (e) => {
         try {
             e.preventDefault();
             signInWithEmailAndPassword(authService, email, password);
             clearInputs();
-            setEmail("");
-            setPassword("");
             navigate("/");
         } catch (error) {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorMessage + errorCode);
+            console.error(error);
         }
     };
+
+    const handleLoginWithDemoUser = async () => {
+        try {
+            signInWithEmailAndPassword(
+                authService,
+                demoUserEmail,
+                demoUserPassword
+            );
+            navigate("/");
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [user]);
 
     return (
         <section className="sign-up-log-in">
@@ -64,7 +75,11 @@ const LogIn = () => {
                     >
                         Log In
                     </button>
-                    <button className="form-button" id="demoUserButton">
+                    <button
+                        onClick={handleLoginWithDemoUser}
+                        className="form-button"
+                        id="demoUserButton"
+                    >
                         DEMO USER
                     </button>
                     <button className="form-button" id="demoUserButton">
