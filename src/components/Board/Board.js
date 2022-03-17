@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Chat from "./Chat/Chat";
 import "./Board.css";
 import ReceivedMessage from "./ReceivedMessage/ReceivedMessage";
@@ -8,6 +8,8 @@ import { authService } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
 function Board() {
+    const [newMess, setNewMess]=useState('')
+
     const navigate = useNavigate();
     const handleLogOut = async () => {
         try {
@@ -17,6 +19,7 @@ function Board() {
             console.error(error);
         }
     };
+
 
     return (
         <div className="board-container">
@@ -81,12 +84,15 @@ function Board() {
                         <SentMessage />
                     </div>
                     <form className="send-message-form">
-                        <input
+                        <textarea
+                            autoComplete="on"
                             placeholder="Message"
                             className="message-input"
-                            type="text"
-                        />
-                        <button id="sendMessage">SEND</button>
+                            onChange={(e)=>{setNewMess(e.target.value)}}>
+                        </textarea>
+                        <button
+                            type="submit"
+                            id="sendMessage">SEND</button>
                     </form>
                 </main>
             </section>

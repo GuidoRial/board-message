@@ -8,8 +8,8 @@ import { authService, firestore } from "./firebase";
 import { signOut } from "firebase/auth";
 
 function App() {
-    const [user, setUser] = useState(false); //User from auth
-    const [activeUser, setActiveUser] = useState(false); //User object that you get with firebase's listener
+    const [user, setUser] = useState(null); //User from auth
+    const [activeUser, setActiveUser] = useState({}); //User object that you get with firebase's listener
 
     //1 listener de Firebase que detecta si hay usuarios conectados o no y de donde vienen
 
