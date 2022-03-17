@@ -8,8 +8,15 @@ import { clearInputs, linkStyle } from "../../auxFunctions";
 const LogIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const disableButton = email === "" || password === "";
     let navigate = useNavigate;
+
+    let demoUserEmail;
+    let demoUserPassword;
+    let demoUserTwoEmail;
+    let demoUserTwoPassword;
+
+    
 
     const handleLogIn = async (e) => {
         try {
@@ -27,10 +34,10 @@ const LogIn = () => {
     };
 
     return (
-        <section className="sign-up">
-            <h1>BoardMessage / Log In</h1>
+        <section className="sign-up-log-in">
+            <h1>BoardMessage</h1>
             <div className="form-container">
-                <form onSubmit={handleLogIn}>
+                <form className="form" onSubmit={handleLogIn}>
                     <input
                         className="input-field"
                         id="email"
@@ -45,12 +52,25 @@ const LogIn = () => {
                         placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button type="submit" id="create-account">
+                    <button
+                        style={
+                            disableButton
+                                ? { opacity: "0.5" }
+                                : { opacity: "1" }
+                        }
+                        type="submit"
+                        className="form-button"
+                        id="actionButton"
+                    >
                         Log In
                     </button>
-                    <button className="demo-butt">User Demo One</button>
-                    <button className="demo-butt">User Demo Two</button>
-                    <div className="have-an-account">
+                    <button className="form-button" id="demoUserButton">
+                        DEMO USER
+                    </button>
+                    <button className="form-button" id="demoUserButton">
+                        DEMO USER 2
+                    </button>
+                    <div className="account-check">
                         <p>Don't have an account?</p>
                         <Link to="/signup" style={linkStyle}>
                             Sign up

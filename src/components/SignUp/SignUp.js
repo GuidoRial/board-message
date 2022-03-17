@@ -72,10 +72,10 @@ function SignUp() {
     };
     
     return (
-        <section className="sign-up">
+        <section className="sign-up-log-in">
             <h1>BoardMessage</h1>
             <div className="form-container">
-                <form className="sign-up-form" onSubmit={handleSignUp}>
+                <form className="form" onSubmit={handleSignUp}>
                     <input
                         className="input-field"
                         id="username"
@@ -120,7 +120,8 @@ function SignUp() {
                     <button
                         disabled={disableButton}
                         type="submit"
-                        id="create-account"
+                        className="form-button"
+                        id="actionButton"
                         style={
                             disableButton
                                 ? { opacity: "0.5" }
@@ -130,7 +131,7 @@ function SignUp() {
                         Create Account
                     </button>
                 </form>
-                <div className="have-an-account">
+                <div className="account-check">
                     <p>Already have an account?</p>
                     <Link to="/login" style={linkStyle}>
                         Log In
