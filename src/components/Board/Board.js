@@ -3,8 +3,21 @@ import Chat from "./Chat/Chat";
 import "./Board.css";
 import ReceivedMessage from "./ReceivedMessage/ReceivedMessage";
 import SentMessage from "./SentMessage/SentMessage";
+import { signOut } from "firebase/auth";
+import { authService } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 function Board() {
+    const navigate = useNavigate();
+    const handleLogOut = async () => {
+        try {
+            signOut(authService);
+            navigate("/login");
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div className="board-container">
             <section className="board">
@@ -16,6 +29,7 @@ function Board() {
                             type="search"
                             placeholder="Search"
                         />
+                        <button onClick={handleLogOut}>L</button>
                     </header>
                     <div className="chats-container">
                         <Chat />
