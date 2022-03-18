@@ -7,8 +7,11 @@ import { useNavigate } from "react-router-dom";
 import MainChats from "./MainChats/MainChats";
 import SendMessageForm from "./SendMessageForm/SendMessageForm";
 
-function Board() {
+
+
     
+
+function Board({ user, activeUser }) {
     const navigate = useNavigate();
     const handleLogOut = async () => {
         try {
@@ -19,6 +22,16 @@ function Board() {
         }
     };
 
+    const getFirstLetter = () => {
+        let firstLetterOfUsername = activeUser.username[0].toUpperCase();
+        return firstLetterOfUsername;
+    };
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/login");
+        }
+    }, [user]);
 
     return (
         <div className="board-container">
@@ -56,17 +69,29 @@ function Board() {
                 <main className="individual-chat">
                     <header className="individual-chat-header">
                         <div className="selected-user">
-                            <div className="profile-picture header-profile-picture">
-                                U
-                            </div>
+                            {activeUser.profilePicture ? (
+                                <img
+                                    src={activeUser.profilePicture}
+                                    alt="user-profile"
+                                />
+                            ) : (
+                                <div className="profile-picture header-profile-picture">
+                                    {getFirstLetter()}
+                                </div>
+                            )}
+
                             <div>
-                                <p className="username">username</p>
-                                <p>Developed by GuidoRial and FedeSca001</p>
+                                <p className="username">
+                                    {activeUser.username}
+                                </p>
+                                <p>{activeUser.about}</p>
                             </div>
                         </div>
                     </header>
+
                     <MainChats />
                     <SendMessageForm/>
+
                 </main>
             </section>
         </div>
