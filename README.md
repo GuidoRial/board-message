@@ -1,35 +1,18 @@
 # Board Message
 
 ## Features
-1. Log in (Fede)
-    *   Logo with <BoardMessage />
-    *   Form
-        *   email
-        *   Password
-        *   Submit Button
-    *   Demo User 
-    *   Demo User 2
-    *   Don't have an account? Create one here... (link to Sign Up)
 
-State management: 
-1. email
-2. password
-
-2. Sign Up (Guido)
-    *   Logo with <BoardMessage />
-    *   Function that redirects you to dashboard when you sign up
-    *   Save that data and get the userObject
-
-3. Board
-    *   Header
-        *   Function to search for users in database
-        *   When you click on Header an aside shows up with user recommendations
-    *   Aside
-        *   When you click on an user, a chat shows up with a history of messages
-    *   Main content
-        *   Header
-            *   Get user data from database an display it
-        *   Chat
-            *   Function that stores form data and adds it to the history messages, which are sorted chronologically in state so that it updates any time there's a change in database
-
-
+1. Board
+    - Search users in database, on click, open chat
+    - Slider aside on click of hamburger
+        - Get recommended users
+            - On click, open chat
+        - Edit profile
+        - Logout
+    - Get history of chats, on click, open chat
+2. Chats
+    - On header, show user or group name and description
+    - Show chats chronologically with a corresponding class if I send or sent a message
+    - Send message as strings, maybe send images from pc?
+3. Dark mode
+4. Background image in login and signup 45deg incline and animated on loop moving up

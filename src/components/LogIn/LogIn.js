@@ -48,7 +48,7 @@ const LogIn = ({ user, activeUser }) => {
     return (
         <div className="contain-logIn-sign-up">
         <section className="sign-up-log-in">
-            <img src={imglogo} alt="logopng" className="img-logo"/>
+            <img src={imglogo} alt="app-logo" className="img-logo"/>
             <div className="form-container">
                 <form className="form" onSubmit={handleLogIn}>
                     <input

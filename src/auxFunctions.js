@@ -9,3 +9,8 @@ export const clearInputs = () => {
         input = input.value = "";
     });
 };
+
+export const getFirstLetterOfUsername = (username) => {
+    let firstLetterOfUsername = username[0].toUpperCase();
+    return firstLetterOfUsername;
+};

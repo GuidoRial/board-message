@@ -8,8 +8,31 @@ import { authService } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
 function Board({ user, activeUser }) {
-    const [newMess, setNewMess] = useState("");
+    const [newMessage, setNewMessage] = useState("");
+    const [myChats, setMyChats] = useState([]); //Get me an array of chats where I'm involved
+    const [recommendedUsers, setRecommendedUsers] = useState([]); //Get me a list of 10 people I haven't messaged
+    const [selectedChat, setSelectedChat] = useState({}); //On click, set this user as selectedChat and load this conversation, if there isn't any open an empty chat
+    const [openBurger, setOpenBurger] = useState(false); //On hamburguer click, toggle and show an aside where I can update this user's info or logout
+    /*
+{
+"participants": [{userOne.userId}, {userTwo.userId}, {userThree.userId}] // If activeUser.userId === anyofthose.userId then get chats
+"messages": [{msg}, {msg}, {msg}, {msg}, {msg}, ]
+}
+
+msg = {
+    sender: {user.userId} //Show this with one class
+    receiver: {user.userId} // And this with the other
+    date: Date.now() //Use this to sort array chronologically so that messages display correctly 
+    content: "" //strings for now, but we could upload images maybe
+    readBy: [userId, userId]
+    read: false // if readBy.length === participants.length then read = true
+    liked: [] // If I double click the message then a heart shows up and my id goes into the liked array
+}
+
+*/
+
     const navigate = useNavigate();
+
     const handleLogOut = async () => {
         try {
             signOut(authService);
@@ -19,16 +42,20 @@ function Board({ user, activeUser }) {
         }
     };
 
-    const getFirstLetter = () => {
-        let firstLetterOfUsername = activeUser.username[0].toUpperCase();
-        return firstLetterOfUsername;
-    };
-
     useEffect(() => {
         if (!user) {
             navigate("/login");
         }
     }, [user]);
+
+    const handleSendMessage = async (e) => {
+        try {
+            e.preventDefault();
+            //take newMessage and add it to this user's chat as {msg}
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div className="board-container">
@@ -73,15 +100,15 @@ function Board({ user, activeUser }) {
                                 />
                             ) : (
                                 <div className="profile-picture header-profile-picture">
-                                    {getFirstLetter()}
+                                    test
                                 </div>
                             )}
 
                             <div>
                                 <p className="username">
-                                    {activeUser.username}
+                                    user I'm talking with
                                 </p>
-                                <p>{activeUser.about}</p>
+                                <p>user's about</p>
                             </div>
                         </div>
                     </header>
@@ -102,13 +129,16 @@ function Board({ user, activeUser }) {
                         <ReceivedMessage />
                         <SentMessage />
                     </div>
-                    <form className="send-message-form">
+                    <form
+                        onSubmit={handleSendMessage}
+                        className="send-message-form"
+                    >
                         <textarea
                             autoComplete="on"
                             placeholder="Message"
                             className="message-input"
                             onChange={(e) => {
-                                setNewMess(e.target.value);
+                                setNewMessage(e.target.value);
                             }}
                         ></textarea>
                         <button type="submit" id="sendMessage">
