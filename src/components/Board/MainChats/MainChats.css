@@ -1,0 +1,8 @@
+.messages-container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    height: 86vh;
+    overflow-y: auto;
+}
