@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Chat from "./Chat/Chat";
 import "./Board.css";
-import ReceivedMessage from "./ReceivedMessage/ReceivedMessage";
-import SentMessage from "./SentMessage/SentMessage";
 import { signOut } from "firebase/auth";
 import { authService } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import MainChats from "./MainChats/MainChats";
+import SendMessageForm from "./SendMessageForm/SendMessageForm";
+
+
+
+    
 
 function Board({ user, activeUser }) {
     const [newMessage, setNewMessage] = useState("");
@@ -112,39 +116,10 @@ msg = {
                             </div>
                         </div>
                     </header>
-                    <div className="messages-container">
-                        <ReceivedMessage />
-                        <SentMessage />
-                        <ReceivedMessage />
-                        <ReceivedMessage />
-                        <SentMessage />
-                        <ReceivedMessage />
-                        <SentMessage />
-                        <ReceivedMessage />
-                        <ReceivedMessage />
-                        <SentMessage />
-                        <ReceivedMessage />
-                        <SentMessage />
-                        <ReceivedMessage />
-                        <ReceivedMessage />
-                        <SentMessage />
-                    </div>
-                    <form
-                        onSubmit={handleSendMessage}
-                        className="send-message-form"
-                    >
-                        <textarea
-                            autoComplete="on"
-                            placeholder="Message"
-                            className="message-input"
-                            onChange={(e) => {
-                                setNewMessage(e.target.value);
-                            }}
-                        ></textarea>
-                        <button type="submit" id="sendMessage">
-                            SEND
-                        </button>
-                    </form>
+
+                    <MainChats />
+                    <SendMessageForm/>
+
                 </main>
             </section>
         </div>
