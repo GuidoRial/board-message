@@ -1,23 +1,32 @@
 import React, { useState } from "react";
-import './SendMessageForm.css'
+import "./SendMessageForm.css";
 
 const SendMessageForm = () => {
+    const handleSendMessage = async (e) => {
+        try {
+            e.preventDefault();
+            //take newMessage and add it to this user's chat as {msg}
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-    const [newMess, setNewMess]=useState('')
+    const [newMessege, setNewMessege] = useState("");
     return (
-        <form className="send-message-form">
+        <form onSubmit={handleSendMessage} className="send-message-form">
             <textarea
                 autoComplete="on"
                 placeholder="Message"
                 className="message-input"
-                onChange={(e)=>{setNewMess(e.target.value)}}>
-            </textarea>
-            <button
-                type="submit"
-                id="sendMessage">SEND
+                onChange={(e) => {
+                    setNewMessege(e.target.value);
+                }}
+            ></textarea>
+            <button type="submit" id="sendMessage">
+                SEND
             </button>
         </form>
-    )
-}
+    );
+};
 
-export default SendMessageForm
+export default SendMessageForm;

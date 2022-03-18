@@ -6,10 +6,8 @@ import { authService } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import MainChats from "./MainChats/MainChats";
 import SendMessageForm from "./SendMessageForm/SendMessageForm";
-
-
-
-    
+import Sidebar from "./Sidebar/Sidebar";
+import Header from "./Header/Header";
 
 function Board({ user, activeUser }) {
     const [newMessage, setNewMessage] = useState("");
@@ -37,89 +35,20 @@ msg = {
 
     const navigate = useNavigate();
 
-    const handleLogOut = async () => {
-        try {
-            signOut(authService);
-            navigate("/login");
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     useEffect(() => {
         if (!user) {
             navigate("/login");
         }
     }, [user]);
 
-    const handleSendMessage = async (e) => {
-        try {
-            e.preventDefault();
-            //take newMessage and add it to this user's chat as {msg}
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
     return (
         <div className="board-container">
             <section className="board">
-                <aside className="history">
-                    <header className="search-container">
-                        <i className="fas fa-bars"></i>
-                        <input
-                            className="search-bar"
-                            type="search"
-                            placeholder="Search"
-                        />
-                        <button onClick={handleLogOut}>L</button>
-                    </header>
-                    <div className="chats-container">
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat /> <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                        <Chat />
-                    </div>
-                </aside>
+                <Sidebar />
                 <main className="individual-chat">
-                    <header className="individual-chat-header">
-                        <div className="selected-user">
-                            {activeUser.profilePicture ? (
-                                <img
-                                    src={activeUser.profilePicture}
-                                    alt="user-profile"
-                                />
-                            ) : (
-                                <div className="profile-picture header-profile-picture">
-                                    test
-                                </div>
-                            )}
-
-                            <div>
-                                <p className="username">
-                                    user I'm talking with
-                                </p>
-                                <p>user's about</p>
-                            </div>
-                        </div>
-                    </header>
-
+                    <Header activeUser={activeUser} />
                     <MainChats />
-                    <SendMessageForm/>
-
+                    <SendMessageForm />
                 </main>
             </section>
         </div>
