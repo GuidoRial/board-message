@@ -1,0 +1,84 @@
+.container-config-data{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 90%;
+    border-radius: 15px;
+    background-color: var(--primary-color);
+    padding: 4vw 0;
+}
+.img-user{
+    background-color: black;
+    color: #f9f9f9;
+    height: 7vw;
+    width: 7vw;
+    margin: 0.7vw auto;
+    border-radius: 100%;
+}
+.name-descp{
+    color: var(--complementary-color);
+    margin-bottom: 1.1vw;
+}
+.label-config-data{
+    margin: 5vw 0;
+    font-size: 1em;
+    font-weight: 800;
+    color: var(--secondary-color);
+}
+.img-icon-config{
+    width: 1.5vw;
+}
+/*INPUT FILE*/
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+.custom-file-input {
+    width: 80%;
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 6px;
+    padding: 5px 8px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 10pt;
+}
+.custom-file-input:hover {
+border-color: black;
+}
+.custom-file-input:active {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+.input-name-config{
+    width: 90%;
+    font-size: 0.8em;
+    color: var(--primary-color);
+    background-color: var(--complementary-color);
+}
+.description-user-data{
+    width: 90%;
+    height: 6vw;
+    font-size: 0.8em;
+    color: var(--primary-color);
+    background-color: var(--complementary-color);
+    border-radius: 8px;
+}
+.container-config-data button{
+    width: 90%;
+    height: 3vw;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1.5vw;
+    background-color: var(--secondary-color);
+    color: var(--complementary-color);
+}
+.button-config-data:hover{
+    background-color: var(--secondary-color-hover);
+}
+.quit-session:hover{
+    background-color: red;
+    color: var(--white);
+}
