@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./SendMessageForm.css";
 
 const SendMessageForm = () => {
+    const [newMessege, setNewMessege] = useState("");
     const handleSendMessage = async (e) => {
         try {
             e.preventDefault();
@@ -11,7 +12,6 @@ const SendMessageForm = () => {
         }
     };
 
-    const [newMessege, setNewMessege] = useState("");
     return (
         <form onSubmit={handleSendMessage} className="send-message-form">
             <textarea
