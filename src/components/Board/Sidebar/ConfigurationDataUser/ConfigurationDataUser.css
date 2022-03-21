@@ -5,22 +5,28 @@
     width: 90%;
     border-radius: 15px;
     background-color: var(--primary-color);
-    padding: 4vw 0;
+    padding: 2.5vw 0;
+    margin: 0 auto;
 }
 .img-user{
     background-color: black;
     color: #f9f9f9;
-    height: 7vw;
-    width: 7vw;
+    height: 8vw;
+    width: 8vw;
     margin: 0.7vw auto;
     border-radius: 100%;
 }
-.name-descp{
+.name-config-data{
+    font-size: 1.5vw;
+    color: var(--complementary-color);
+    margin-bottom: 1.1vw;
+}
+.descp-config-data{
+    font-size: 1vw;
     color: var(--complementary-color);
     margin-bottom: 1.1vw;
 }
 .label-config-data{
-    margin: 5vw 0;
     font-size: 1em;
     font-weight: 800;
     color: var(--secondary-color);
@@ -33,6 +39,7 @@
     visibility: hidden;
   }
 .custom-file-input {
+    margin-bottom: 1vw;
     width: 80%;
     display: inline-block;
     background: linear-gradient(top, #f9f9f9, #e3e3e3);
@@ -52,6 +59,7 @@ border-color: black;
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 .input-name-config{
+    margin-bottom: 1vw;
     width: 90%;
     font-size: 0.8em;
     color: var(--primary-color);
