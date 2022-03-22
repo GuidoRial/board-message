@@ -1,13 +1,13 @@
 import React, {  useState } from "react";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { authService } from "../../../../firebase";
+import { authService, firestore } from "../../../../firebase";
 import icon from '../../../../assets/editDataUser.png'
 import './ConfigurationDataUser.css'
 
-const ConfigurationDataUser = ({user, activeUser}) => {
-    const [userPreviusly, setUserPreviusly] = useState(user)
+const ConfigurationDataUser = ({ activeUser }) => {
     const [userLogued, setUserLoged] = useState(activeUser)
+    const [newPhoto, setNewPhoto] = useState('')
     const [nameConfig, setNameConfig] = useState('')
     const [passConfig, setPassConfig] = useState('')
     const [descpConfig, setDescpConfig] = useState('')
@@ -15,12 +15,15 @@ const ConfigurationDataUser = ({user, activeUser}) => {
 
 
     const addChangesUser = async (e)=>{
+        //Validar caracteres-- about max lenght 100 + feedback al ususario
+        //validar usuario en base de datos (signUp)
+        //si no hay cambios en algun campo no cambia nada if(valor == '')new texttarea = anterior textarea
         e.preventDefault();
-        await user.updateProfile({
+        /*const addChanges = await firestore.colection('users').doc(activeUser.docId).update({
             username: nameConfig,
-        })
-        console.log(nameConfig + ' - ' + passConfig + ' - ' + descpConfig);
-
+            about: descpConfig
+        })*/
+        console.log(newPhoto);
     }
     const navigate = useNavigate();
     const handleLogOut = async () => {
@@ -47,7 +50,7 @@ const ConfigurationDataUser = ({user, activeUser}) => {
                 accept=".jpg, .jpeg, .png"
                 id='file'
                 className='custom-file-input'
-                onChange={(e)=> {console.log(e.target)}}/><br/>
+                onChange={(e)=> {setNewPhoto(e.target.value)}}/><br/>
             <label className='label-config-data'>User Name</label>
             <input type='text'
                     className='input-name-config' 
@@ -57,7 +60,8 @@ const ConfigurationDataUser = ({user, activeUser}) => {
                     className='input-name-config' 
                     onChange={(e) => setPassConfig(e.target.value)} /><br/>
             <label className='label-config-data'>Description</label><br/>
-            <textarea type='text' 
+            <textarea type='text'
+                    maxLength={5}
                     className='description-user-data'
                     onChange={(e) => setDescpConfig(e.target.value)}></textarea><br/>
             <button type='submit' 

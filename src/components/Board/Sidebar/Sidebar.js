@@ -1,22 +1,25 @@
 
-import React from "react";
+import React, { useState } from "react";
 
 import Chat from "../Chat/Chat";
 import ConfigurationDataUser from "./ConfigurationDataUser/ConfigurationDataUser";
 
 function Sidebar({user, activeUser}) {
+    const [configUserMenu, setConfigUserMenu] = useState(false)
     
     return (
         <aside className="history">
             <header className="search-container">
-                <i className="fas fa-bars"></i>
+                <i className="fas fa-bars" onClick={()=>setConfigUserMenu(!configUserMenu)}></i>
                 <input
                     className="search-bar"
                     type="search"
                     placeholder="Search"
                 />
             </header>
-            <ConfigurationDataUser user={user} activeUser={activeUser}/>
+            {configUserMenu ?
+            <ConfigurationDataUser activeUser={activeUser}/>
+            :
             <div className="chats-container">
                 <Chat />
                 <Chat />
@@ -35,7 +38,7 @@ function Sidebar({user, activeUser}) {
                 <Chat />
                 <Chat />
                 <Chat />
-            </div>
+            </div>}
         </aside>
     );
 }
