@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700&display=swap');
+
 .container-config-data{
     display: flex;
     flex-direction: column;
@@ -59,21 +61,25 @@ border-color: black;
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 .input-name-config{
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 1em;
     margin-bottom: 1vw;
     width: 90%;
-    font-size: 0.8em;
     color: var(--primary-color);
     background-color: var(--complementary-color);
 }
 .description-user-data{
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 1em;
     width: 90%;
     height: 6vw;
-    font-size: 0.8em;
     color: var(--primary-color);
     background-color: var(--complementary-color);
     border-radius: 8px;
 }
-.container-config-data button{
+.button-config-data{
     width: 90%;
     height: 3vw;
     font-weight: 700;
@@ -85,6 +91,16 @@ border-color: black;
 }
 .button-config-data:hover{
     background-color: var(--secondary-color-hover);
+}
+.quit-session{
+    background-color: rgb(255, 77, 77);
+    width: 90%;
+    height: 3vw;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1.5vw;
+    color: var(--complementary-color);
 }
 .quit-session:hover{
     background-color: red;

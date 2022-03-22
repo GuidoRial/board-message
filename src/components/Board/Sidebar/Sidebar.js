@@ -4,7 +4,7 @@ import React from "react";
 import Chat from "../Chat/Chat";
 import ConfigurationDataUser from "./ConfigurationDataUser/ConfigurationDataUser";
 
-function Sidebar() {
+function Sidebar({user, activeUser}) {
     
     return (
         <aside className="history">
@@ -15,9 +15,8 @@ function Sidebar() {
                     type="search"
                     placeholder="Search"
                 />
-                
             </header>
-            <ConfigurationDataUser/>
+            <ConfigurationDataUser user={user} activeUser={activeUser}/>
             <div className="chats-container">
                 <Chat />
                 <Chat />

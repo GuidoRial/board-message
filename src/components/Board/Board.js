@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Chat from "./Chat/Chat";
 import "./Board.css";
-import { signOut } from "firebase/auth";
-import { authService } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import MainChats from "./MainChats/MainChats";
 import SendMessageForm from "./SendMessageForm/SendMessageForm";
@@ -44,7 +41,7 @@ msg = {
     return (
         <div className="board-container">
             <section className="board">
-                <Sidebar />
+                <Sidebar user={user} activeUser={activeUser}/>
                 <main className="individual-chat">
                     <Header activeUser={activeUser} />
                     <MainChats />
