@@ -1,54 +1,66 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { clearInputs, linkStyle } from "../../auxFunctions";
+import {
+    clearInputs,
+    getUserByUsername,
+    linkStyle,
+    userInDatabase,
+} from "../../auxFunctions";
 import "./SignUp.css";
 import { firebase, firestore } from "../../firebase";
 
 function SignUp({ user, activeUser }) {
+    const [usersFromDatabase, setUsersFromDatabase] = useState([]);
+    const [usernameAvailable, setUsernameAvailable] = useState(true);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const [usernameIsInDatabase, setUsernameIsInDatabase] = useState(false);
     const [usernameIsValid, setUsernameIsValid] = useState(null);
-
     const [emailIsValid, setEmailIsValid] = useState(null);
     const [passwordIsValid, setPasswordIsValid] = useState(null);
 
     const disableButton = username === "" || email === "" || password === "";
-
     let navigate = useNavigate();
 
     useEffect(() => {
-        //check if user exists in database
+        const getUsersFromDatabase = async () => {
+            const result = await firestore.collection("users").get();
+            let filteredResult = result.docs.map((user) => ({
+                username: user.data().username,
+            }));
+            setUsersFromDatabase(filteredResult);
+        };
 
-        setUsernameIsInDatabase(false);
-    }, [username]);
+        getUsersFromDatabase();
+    }, []);
 
     const handleSignUp = async (e) => {
+        e.preventDefault();
+        for (let user of usersFromDatabase.values()) {
+            if (user.username === username) {
+                setUsernameAvailable(false);
+                return;
+            } else {
+                setUsernameAvailable(true);
+            }
+        }
         if (username.length < 3 || username.length > 12) {
-            e.preventDefault();
             setUsernameIsValid(false);
-            setTimeout(() => {
-                setUsernameIsValid(null);
-            }, 5000);
+        } else {
+            setUsernameIsValid(null);
         }
         if (!email.includes("@") || email.length < 3) {
-            e.preventDefault();
             setEmailIsValid(false);
-            setTimeout(() => {
-                setEmailIsValid(null);
-            }, 5000);
+        } else {
+            setEmailIsValid(null);
         }
         if (password.length < 6 || password.length > 20) {
-            e.preventDefault();
             setPasswordIsValid(false);
-            setTimeout(() => {
-                setPasswordIsValid(null);
-            }, 5000);
+        } else {
+            setPasswordIsValid(null);
         }
         try {
-            e.preventDefault();
             const createdUserResult = await firebase
                 .auth()
                 .createUserWithEmailAndPassword(email, password);
@@ -96,7 +108,8 @@ function SignUp({ user, activeUser }) {
                             Username should be between 3 and 12 characters
                         </p>
                     )}
-                    {usernameIsInDatabase && (
+
+                    {!usernameAvailable && (
                         <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
                             Username is already in use
                         </p>
