@@ -6,24 +6,18 @@ import icon from '../../../../assets/editDataUser.png'
 import './ConfigurationDataUser.css'
 
 const ConfigurationDataUser = ({ activeUser }) => {
-    const [userLogued, setUserLoged] = useState(activeUser)
-    const [newPhoto, setNewPhoto] = useState('')
-    const [nameConfig, setNameConfig] = useState('')
+    const [newPhoto, setNewPhoto] = useState(activeUser.profilePicture)
+    const [nameConfig, setNameConfig] = useState(activeUser.nae)
     const [passConfig, setPassConfig] = useState('')
-    const [descpConfig, setDescpConfig] = useState('')
-
-
+    const [descpConfig, setDescpConfig] = useState(activeUser.about)
 
     const addChangesUser = async (e)=>{
-        //Validar caracteres-- about max lenght 100 + feedback al ususario
-        //validar usuario en base de datos (signUp)
-        //si no hay cambios en algun campo no cambia nada if(valor == '')new texttarea = anterior textarea
         e.preventDefault();
         /*const addChanges = await firestore.colection('users').doc(activeUser.docId).update({
             username: nameConfig,
             about: descpConfig
         })*/
-        console.log(newPhoto);
+        console.log(descpConfig + nameConfig + passConfig + newPhoto);
     }
     const navigate = useNavigate();
     const handleLogOut = async () => {
@@ -37,13 +31,13 @@ const ConfigurationDataUser = ({ activeUser }) => {
   return (
     <section className="container-config-data">
             <div className='img-user'>
-                <img src={activeUser.profilePicture} alt="Img User"/>
+                <img src={activeUser.profilePicture} alt={activeUser.name}/>
             </div>
             <h3 className='name-config-data'>{activeUser.username}</h3>
             <p className='descp-config-data'>{activeUser.about}</p>
         <form onSubmit={(e)=>{e.preventDefault()}}>
             <label className='label-config-data'>
-                Add img <img src={icon} className="img-icon-config"/>
+                Add img <img src={icon} alt='icon' className="img-icon-config"/>
             </label>
             <input
                 type='file'
@@ -53,6 +47,8 @@ const ConfigurationDataUser = ({ activeUser }) => {
                 onChange={(e)=> {setNewPhoto(e.target.value)}}/><br/>
             <label className='label-config-data'>User Name</label>
             <input type='text'
+                    maxLength={12}
+                    minLength={3}
                     className='input-name-config' 
                     onChange={(e) => setNameConfig(e.target.value)} /><br/>
             <label className='label-config-data'>Password</label>
@@ -61,9 +57,10 @@ const ConfigurationDataUser = ({ activeUser }) => {
                     onChange={(e) => setPassConfig(e.target.value)} /><br/>
             <label className='label-config-data'>Description</label><br/>
             <textarea type='text'
-                    maxLength={5}
+                    maxLength={100}
                     className='description-user-data'
-                    onChange={(e) => setDescpConfig(e.target.value)}></textarea><br/>
+                    onChange={(e) => setDescpConfig(e.target.value)}></textarea>
+            <p className="count-characters">Characters {descpConfig.length} / 100</p><br/>
             <button type='submit' 
                     className='button-config-data'
                     onClick={addChangesUser}>Send configuration</button>
