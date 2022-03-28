@@ -39,9 +39,6 @@ function App() {
         };
     }, [user]);
 
-    console.log(user);
-    console.log(activeUser)
-
     return (
         <div className="App">
             <BrowserRouter>

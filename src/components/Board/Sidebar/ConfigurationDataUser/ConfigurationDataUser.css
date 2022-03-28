@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700&display=swap');
+
+.container-config-data{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 90%;
+    border-radius: 15px;
+    background-color: var(--primary-color);
+    padding: 2.5vw 0;
+    margin: 0 auto;
+}
+.img-user{
+    background-color: black;
+    color: #f9f9f9;
+    height: 8vw;
+    width: 8vw;
+    margin: 0.7vw auto;
+    border-radius: 100%;
+}
+.name-config-data{
+    font-size: 1.5vw;
+    color: var(--complementary-color);
+    margin-bottom: 1.1vw;
+}
+.descp-config-data{
+    font-size: 1vw;
+    color: var(--complementary-color);
+    margin-bottom: 1.1vw;
+}
+.label-config-data{
+    font-size: 1em;
+    font-weight: 800;
+    color: var(--secondary-color);
+}
+.img-icon-config{
+    width: 1.5vw;
+}
+/*INPUT FILE*/
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+.custom-file-input {
+    margin-bottom: 1vw;
+    width: 80%;
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 6px;
+    padding: 5px 8px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 10pt;
+}
+.custom-file-input:hover {
+border-color: black;
+}
+.custom-file-input:active {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+.input-name-config{
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 1em;
+    margin-bottom: 1vw;
+    width: 90%;
+    color: var(--primary-color);
+    background-color: var(--complementary-color);
+}
+.description-user-data{
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 1em;
+    width: 90%;
+    height: 6vw;
+    color: var(--primary-color);
+    background-color: var(--complementary-color);
+    border-radius: 8px;
+}
+.button-config-data{
+    width: 90%;
+    height: 3vw;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1.5vw;
+    background-color: var(--secondary-color);
+    color: var(--complementary-color);
+}
+.button-config-data:hover{
+    background-color: var(--secondary-color-hover);
+}
+.quit-session{
+    background-color: rgb(255, 77, 77);
+    width: 90%;
+    height: 3vw;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1.5vw;
+    color: var(--complementary-color);
+}
+.quit-session:hover{
+    background-color: red;
+    color: var(--white);
+}
+.count-characters{
+    color: #f9f9f9;
+}
