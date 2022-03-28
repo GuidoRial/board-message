@@ -5,8 +5,11 @@ import MainChats from "./MainChats/MainChats";
 import SendMessageForm from "./SendMessageForm/SendMessageForm";
 import Sidebar from "./Sidebar/Sidebar";
 import Header from "./Header/Header";
+import { firestore } from "../../firebase";
 
 function Board({ user, activeUser }) {
+    const [messagesFromDatabase, setMessagesFromDatabase ] = useState([])
+    const [msgUser, setMsgUser] = useState('')
     const [newMessage, setNewMessage] = useState("");
     const [myChats, setMyChats] = useState([]); //Get me an array of chats where I'm involved
     const [recommendedUsers, setRecommendedUsers] = useState([]); //Get me a list of 10 people I haven't messaged
@@ -29,7 +32,16 @@ msg = {
 }
 
 */
-
+/*    const getMessagesFromDatabase = async () => {
+        const result = await firestore.collection('messages').get()
+        let filtermsg = result.docs.map((msg)=>{
+            msg : msg.data().messagesent
+        })
+        setMsgUser(filtermsg)
+        console.log(filtermsg);
+    }
+    getMessagesFromDatabase()
+*/
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -45,7 +57,7 @@ msg = {
                 <main className="individual-chat">
                     <Header activeUser={activeUser} />
                     <MainChats />
-                    <SendMessageForm />
+                    <SendMessageForm activeUser={activeUser} />
                 </main>
             </section>
         </div>

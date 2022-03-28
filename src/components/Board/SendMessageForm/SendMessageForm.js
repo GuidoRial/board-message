@@ -3,6 +3,8 @@ import "./SendMessageForm.css";
 
 const SendMessageForm = () => {
     const [newMessege, setNewMessege] = useState("");
+
+
     const handleSendMessage = async (e) => {
         try {
             e.preventDefault();
