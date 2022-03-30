@@ -1,11 +1,12 @@
 import React from "react";
+import './Header.css'
 
 function Header({ activeUser }) {
     return (
         <header className="individual-chat-header">
             <div className="selected-user">
                 {activeUser.profilePicture ? (
-                    <img src={activeUser.profilePicture} alt="user-profile" />
+                    <img src={activeUser.profilePicture} alt="user-profile" className="user-profile" />
                 ) : (
                     <div className="profile-picture header-profile-picture">
                         test

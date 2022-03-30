@@ -35,13 +35,13 @@ const ConfigurationDataUser = ({ activeUser }) => {
   return (
     <section className="container-config-data">
             <div className='img-user'>
-                <img src={activeUser.profilePicture} alt={activeUser.name}/>
+                <img src={activeUser.profilePicture} alt={activeUser.name} className="img-icon-config"/>
             </div>
             <h3 className='name-config-data'>{activeUser.username}</h3>
             <p className='descp-config-data'>{activeUser.about}</p>
         <form onSubmit={(e)=>{addChangesUser(e)}}>
             <label className='label-config-data'>
-                Add img <img src={icon} alt='icon' className="img-icon-config"/>
+                Add img <img src={icon} alt='icon' />
             </label>
             <input
                 type='file'
