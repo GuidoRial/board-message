@@ -92,74 +92,76 @@ function SignUp({ user, activeUser }) {
     }, [user]);
 
     return (
-        <section className="sign-up-log-in">
-            <h1>BoardMessage</h1>
-            <div className="form-container">
-                <form className="form" onSubmit={handleSignUp}>
-                    <input
-                        className="input-field"
-                        id="username"
-                        type="text"
-                        placeholder="Enter your username..."
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    {usernameIsValid === false && (
-                        <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
-                            Username should be between 3 and 12 characters
-                        </p>
-                    )}
+        <div className="contain-logIn-sign-up">
+            <section className="sign-up-log-in">
+                <h1>BoardMessage</h1>
+                <div className="form-container">
+                    <form className="form" onSubmit={handleSignUp}>
+                        <input
+                            className="input-field"
+                            id="username"
+                            type="text"
+                            placeholder="Enter your username..."
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        {usernameIsValid === false && (
+                            <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
+                                Username should be between 3 and 12 characters
+                            </p>
+                        )}
 
-                    {!usernameAvailable && (
-                        <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
-                            Username is already in use
-                        </p>
-                    )}
-                    <input
-                        className="input-field"
-                        id="email"
-                        type="text"
-                        placeholder="Enter your e-mail..."
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    {emailIsValid === false && (
-                        <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
-                            E-mail is not valid
-                        </p>
-                    )}
-                    <input
-                        className="input-field"
-                        id="password"
-                        type="password"
-                        placeholder="Enter your password..."
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    {passwordIsValid === false && (
-                        <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
-                            Password is not valid
-                        </p>
-                    )}
-                    <button
-                        disabled={disableButton}
-                        type="submit"
-                        className="form-button"
-                        id="actionButton"
-                        style={
-                            disableButton
-                                ? { opacity: "0.5" }
-                                : { opacity: "1" }
-                        }
-                    >
-                        Create Account
-                    </button>
-                </form>
-                <div className="account-check">
-                    <p>Already have an account?</p>
-                    <Link to="/login" style={linkStyle}>
-                        Log In
-                    </Link>
+                        {!usernameAvailable && (
+                            <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
+                                Username is already in use
+                            </p>
+                        )}
+                        <input
+                            className="input-field"
+                            id="email"
+                            type="text"
+                            placeholder="Enter your e-mail..."
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        {emailIsValid === false && (
+                            <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
+                                E-mail is not valid
+                            </p>
+                        )}
+                        <input
+                            className="input-field"
+                            id="password"
+                            type="password"
+                            placeholder="Enter your password..."
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        {passwordIsValid === false && (
+                            <p style={{ color: "#FD1D1D", fontWeight: "700" }}>
+                                Password is not valid
+                            </p>
+                        )}
+                        <button
+                            disabled={disableButton}
+                            type="submit"
+                            className="form-button"
+                            id="actionButton"
+                            style={
+                                disableButton
+                                    ? { opacity: "0.5" }
+                                    : { opacity: "1" }
+                            }
+                        >
+                            Create Account
+                        </button>
+                    </form>
+                    <div className="account-check">
+                        <p>Already have an account?</p>
+                        <Link to="/login" style={linkStyle}>
+                            Log In
+                        </Link>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     );
 }
 

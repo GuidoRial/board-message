@@ -8,15 +8,29 @@
     background-color: var(--secondary-color);
     color: var(--white);
 }
-.sign-up-log-in{
+.sign-up-log-in {
     background-color: var(--complementary-color);
 }
-.contain-logIn-sign-up{
+.contain-logIn-sign-up {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-image: url('../../assets/board-messageimg.jpg');
+    background-image: url("../../assets/board-messageimg.jpg");
+
+    animation: moving-background 45s ease-in-out infinite;
 }
-.img-logo{
+
+@keyframes moving-background {
+    from {
+        background-position: right;
+    }
+    50% {
+        background-position: left;
+    }
+    to {
+        background-position: right;
+    }
+}
+.img-logo {
     max-width: 7vw;
 }
