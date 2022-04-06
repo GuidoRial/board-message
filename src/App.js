@@ -9,7 +9,7 @@ import { authService, firestore } from "./firebase";
 function App() {
     const [user, setUser] = useState(null); //User from auth
     const [activeUser, setActiveUser] = useState({}); //User object that you get with firebase's listener
-console.log(activeUser)
+    //console.log(activeUser)
     useEffect(() => {
         const unsuscribe = authService.onAuthStateChanged(async (authUser) => {
             if (authUser) {

@@ -35,7 +35,19 @@ export async function userInDatabase(username) {
     let userArray = result.docs.map((user) => ({
         username: user.data().username,
     }));
-    let user = userArray.find(({user}) => user.username === username);
+    let user = userArray.find(({ user }) => user.username === username);
 
     return user;
 }
+
+export const getMyChats = async (userId) => {
+    const result = await firestore
+        .collection("messages")
+        .where("participants", "array-contains", userId)
+        .get();
+    const chat = result.docs.map((item) => ({
+        ...item.data(),
+        docId: item.id,
+    }));
+    return chat;
+};

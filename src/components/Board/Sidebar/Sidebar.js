@@ -1,6 +1,5 @@
 
 import React, { useState } from "react";
-
 import Chat from "../Chat/Chat";
 import ConfigurationDataUser from "./ConfigurationDataUser/ConfigurationDataUser";
 
@@ -22,22 +21,7 @@ function Sidebar({user, activeUser}) {
             :
             <div className="chats-container">
                 <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
+               
             </div>}
         </aside>
     );

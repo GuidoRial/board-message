@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import "./SendMessageForm.css";
 
 const SendMessageForm = () => {
-    const [newMessege, setNewMessege] = useState("");
-
-
+    const [newMessage, setNewMessage] = useState("");
     const handleSendMessage = async (e) => {
         try {
             e.preventDefault();
@@ -21,7 +19,7 @@ const SendMessageForm = () => {
                 placeholder="Message"
                 className="message-input"
                 onChange={(e) => {
-                    setNewMessege(e.target.value);
+                    setNewMessage(e.target.value);
                 }}
             ></textarea>
             <button type="submit" id="sendMessage">
