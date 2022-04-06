@@ -36,6 +36,10 @@
 .img-icon-config{
     width: 1.5vw;
 }
+.img-user{
+    width: 4vw;
+    height: 4vw;
+}
 /*INPUT FILE*/
 .custom-file-input::-webkit-file-upload-button {
     visibility: hidden;

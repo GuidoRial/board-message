@@ -72,6 +72,7 @@ const ConfigurationDataUser = ({ activeUser }) => {
                 <img
                     src={activeUser.profilePicture}
                     alt={activeUser.username}
+                    className="img-user"
                 />
             </div>
             <h3 className="name-config-data">{activeUser.username}</h3>
