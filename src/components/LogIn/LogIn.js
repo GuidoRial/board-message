@@ -82,7 +82,7 @@ const LogIn = ({ user, activeUser }) => {
                         className="form-button"
                         id="demoUserButton"
                     >
-                        DEMO USER
+                        DEMO USERS
                     </button>
                     <div className="account-check">
                         <p>Don't have an account?</p>
