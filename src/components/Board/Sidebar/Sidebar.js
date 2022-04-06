@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-
+import './Sidebar.css'
 import Chat from "../Chat/Chat";
 import ConfigurationDataUser from "./ConfigurationDataUser/ConfigurationDataUser";
 
