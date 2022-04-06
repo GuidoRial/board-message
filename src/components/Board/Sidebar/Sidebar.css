@@ -1,0 +1,38 @@
+.history {
+    background-color: var(--complementary-color);
+    height: 100vh;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    height: 2rem;
+    background-color: var(--complementary-color);
+}
+.search-bar {
+    border: 1px solid var(--primary-text);
+    border-radius: 5px;
+    padding: 0.1rem;
+    width: 100%;
+}
+.search-bar:hover {
+    border: 1.5px solid var(--secondary-text);
+}
+.search-bar:active {
+    border: 1.5px solid black;
+}
+.fas {
+    cursor: pointer;
+}
+.messages-container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    height: 86vh;
+    overflow-y: auto;
+}
+.chats-container{
+    height: fit-content(50vw);
+}

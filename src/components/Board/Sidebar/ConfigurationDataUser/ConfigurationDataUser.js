@@ -68,19 +68,16 @@ const ConfigurationDataUser = ({ activeUser }) => {
     };
     return (
         <section className="container-config-data">
-            <div className="img-user">
                 <img
                     src={activeUser.profilePicture}
                     alt={activeUser.username}
                     className="img-user"
                 />
-            </div>
             <h3 className="name-config-data">{activeUser.username}</h3>
             <p className="descp-config-data">{activeUser.about}</p>
 
             <label className="label-config-data">
                 Add img
-                <img src={icon} alt="icon" className="img-icon-config" />
             </label>
             <input
                 type="file"
@@ -89,7 +86,7 @@ const ConfigurationDataUser = ({ activeUser }) => {
                 className="custom-file-input"
                 onChange={(e) => setNewPhoto(e.target.files[0])}
             />
-            <br />
+
             <label className="label-config-data">User Name</label>
             <input
                 type="text"
@@ -98,11 +95,9 @@ const ConfigurationDataUser = ({ activeUser }) => {
                 className="input-name-config"
                 onChange={(e) => setNewName(e.target.value)}
             />
-            <br />
 
-            <br />
             <label className="label-config-data">Description</label>
-            <br />
+
             <textarea
                 type="text"
                 maxLength={100}
@@ -112,7 +107,7 @@ const ConfigurationDataUser = ({ activeUser }) => {
             <p className="count-characters">
                 Characters {newAbout.length} / 100
             </p>
-            <br />
+
             <button
                 className="button-config-data"
                 onClick={() => updateProfile(newPhoto, activeUser)}

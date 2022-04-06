@@ -51,16 +51,14 @@ msg = {
     }, [user]);
 
     return (
-        <div className="board-container">
-            <section className="board">
-                <Sidebar user={user} activeUser={activeUser}/>
-                <main className="individual-chat">
-                    <Header activeUser={activeUser} />
-                    <MainChats />
-                    <SendMessageForm activeUser={activeUser} />
-                </main>
-            </section>
-        </div>
+        <section className="board">
+            <Sidebar user={user} activeUser={activeUser} className="sidebar"/>
+            <main className="individual-chat">
+                <Header activeUser={activeUser} />
+                <MainChats />
+                <SendMessageForm activeUser={activeUser} />
+            </main>
+        </section>
     );
 }
 

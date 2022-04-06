@@ -1,5 +1,5 @@
 import React from "react";
-
+import './Header.css'
 function Header({ activeUser }) {
     return (
         <header className="individual-chat-header">
@@ -7,7 +7,7 @@ function Header({ activeUser }) {
                 {activeUser.profilePicture ? (
                     <img src={activeUser.profilePicture} alt="user-profile" />
                 ) : (
-                    <div className="profile-picture header-profile-picture">
+                    <div className="header-profile-picture">
                         test
                     </div>
                 )}

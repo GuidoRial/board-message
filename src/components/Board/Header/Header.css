@@ -1,0 +1,16 @@
+.selected-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    background-color: var(--complementary-color);
+    padding: 0.5rem;
+    height: 2rem;
+}
+.header-profile-picture {
+    width: 2rem;
+    height: 2rem;
+}
+.username {
+    font-weight: 700;
+}
