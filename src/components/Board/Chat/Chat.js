@@ -4,11 +4,9 @@ import {
     getFirstLetterOfUsername,
     getUserByUserId,
 } from "../../../auxFunctions";
-import { firestore } from "../../../firebase";
 
 import "./Chat.css";
 function Chat({ chat, setSelectedChat, selectedChat, activeUser }) {
-    const [otherUser, setOtherUser] = useState({});
     const [profilePicture, setProfilePicture] = useState("");
     const [userName, setUserName] = useState("");
     const [firstLetterOfUsername, setFirstLetterOfUsername] = useState("");
@@ -21,8 +19,7 @@ function Chat({ chat, setSelectedChat, selectedChat, activeUser }) {
                     activeUser.username
                 );
                 setFirstLetterOfUsername(firstLetter);
-            }
-            if (chat.participants.length === 2) {
+            } else if (chat.participants.length === 2) {
                 const [otherUserId] = chat.participants.filter(
                     (id) => id !== activeUser.userId
                 );
@@ -31,21 +28,16 @@ function Chat({ chat, setSelectedChat, selectedChat, activeUser }) {
                 setProfilePicture(receiver.profilePicture);
                 const firstLetter = getFirstLetterOfUsername(receiver.username);
                 setFirstLetterOfUsername(firstLetter);
+            } else {
+                setUserName(chat.groupName);
+                setProfilePicture(chat.profilePicture);
+                const firstLetter = getFirstLetterOfUsername(chat.groupName);
+                setFirstLetterOfUsername(firstLetter);
             }
         };
         loadChatData();
     }, []);
 
-    /* 
-    render:
-     if chat.participants.length <= 2
-        username: otherUser.username
-        userProfilePic: otherUser.profilePic
-        
-        else
-        chat.profilePicture
-        chat.name
-    */
     return (
         <div className="chat" onClick={() => setSelectedChat(chat.docId)}>
             {profilePicture ? (
@@ -56,11 +48,11 @@ function Chat({ chat, setSelectedChat, selectedChat, activeUser }) {
                 />
             ) : (
                 <div className="profile-picture history-profile-picture">
-                    {firstLetterOfUsername}
+                    {firstLetterOfUsername ? firstLetterOfUsername : "G"}
                 </div>
             )}
 
-            <p className="username">{userName ? userName : "Loading..."}</p>
+            <p className="username">{userName ? userName : "group chat..."}</p>
         </div>
     );
 }
