@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import Chat from "../Chat/Chat";
 import ConfigurationDataUser from "./ConfigurationDataUser/ConfigurationDataUser";
 
-function Sidebar({ user, activeUser, myChats, setSelectedChat }) {
-    const [configUserMenu, setConfigUserMenu] = useState(false);
-
+function Sidebar({ user, activeUser, myChats, setSelectedChat, selectedChat }) {
+    const [openBurger, setOpenBurger] = useState(false); //On hamburger click, toggle and show an aside where I can update this user's info or logout
 
     return (
         <aside className="history">
             <header className="search-container">
                 <i
                     className="fas fa-bars"
-                    onClick={() => setConfigUserMenu(!configUserMenu)}
+                    onClick={() => setOpenBurger(!openBurger)}
                 ></i>
                 <input
                     className="search-bar"
@@ -19,15 +18,17 @@ function Sidebar({ user, activeUser, myChats, setSelectedChat }) {
                     placeholder="Search"
                 />
             </header>
-            {configUserMenu ? (
+            {openBurger ? (
                 <ConfigurationDataUser activeUser={activeUser} />
             ) : (
                 <div className="chats-container">
                     {myChats.map((chat) => (
                         <Chat
+                            activeUser={activeUser}
                             key={chat.docId}
                             chat={chat}
                             setSelectedChat={setSelectedChat}
+                            selectedChat={selectedChat}
                         />
                     ))}
                 </div>
