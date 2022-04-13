@@ -2,7 +2,7 @@
     width: 100%;
     display: grid;
     grid-template: 
-        "sidebar main" 100% /
+        "sidebar main" 100vh /
          25%   auto;
 }
 

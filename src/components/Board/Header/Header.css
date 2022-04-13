@@ -3,9 +3,9 @@
     align-items: center;
     gap: 1rem;
     cursor: pointer;
-    background-color: var(--complementary-color);
     padding: 0.5rem;
     height: 2rem;
+
 }
 .header-profile-picture {
     width: 2rem;
@@ -13,4 +13,8 @@
 }
 .username {
     font-weight: 700;
+}
+.individual-chat-header{
+    background-color: var(--complementary-color);
+    height: 10%;
 }
