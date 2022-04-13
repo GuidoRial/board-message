@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import SignUp from "./components/SignUp/SignUp";
 import LogIn from "./components/LogIn/LogIn";
@@ -9,7 +9,6 @@ import { authService, firestore } from "./firebase";
 function App() {
     const [user, setUser] = useState(null); //User from auth
     const [activeUser, setActiveUser] = useState({}); //User object that you get with firebase's listener
-console.log(activeUser)
     useEffect(() => {
         const unsuscribe = authService.onAuthStateChanged(async (authUser) => {
             if (authUser) {
@@ -28,7 +27,6 @@ console.log(activeUser)
 
                 setActiveUser(userObject);
             } else {
-                //User has logged out
                 setUser(null);
                 setActiveUser({});
             }
@@ -43,19 +41,27 @@ console.log(activeUser)
         <div className="App">
             <BrowserRouter>
                 <Routes>
+                    {
+                        activeUser ? (
+                        <Route
+                            path="/"
+                            element={<Board user={user} activeUser={activeUser} />}
+                        />
+                        ) : (<>
+                        <Route
+                            path="/login"
+                            element={<LogIn user={user} activeUser={activeUser} />}
+                        />
+                        <Route
+                            path="/signup"
+                            element={<SignUp user={user} activeUser={activeUser}/>}
+                        />
+                        </>
+                        )
+                    }
                     <Route
-                        path="/"
-                        element={<Board user={user} activeUser={activeUser} />}
-                    />
-
-                    <Route
-                        path="/login"
-                        element={<LogIn user={user} activeUser={activeUser} />}
-                    />
-
-                    <Route
-                        path="/signup"
-                        element={<SignUp user={user} activeUser={activeUser} />}
+                        path="*"
+                        element={<Navigate to={activeUser ? "/" : "/login"} />}
                     />
                 </Routes>
             </BrowserRouter>

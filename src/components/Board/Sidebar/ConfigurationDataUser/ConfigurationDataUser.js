@@ -81,7 +81,6 @@ const ConfigurationDataUser = ({ activeUser }) => {
             </label>
             <input
                 type="file"
-                /*accept=".jpg, .jpeg, .png"*/
                 id="file"
                 className="custom-file-input"
                 onChange={(e) => setNewPhoto(e.target.files[0])}

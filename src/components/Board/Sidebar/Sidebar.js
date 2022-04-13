@@ -27,17 +27,6 @@ function Sidebar({user, activeUser}) {
                 <Chat />
                 <Chat />
                 <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
-                <Chat />
             </div>}
         </aside>
     );
