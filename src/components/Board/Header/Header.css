@@ -1,0 +1,20 @@
+.selected-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    height: 2rem;
+
+}
+.header-profile-picture {
+    width: 2rem;
+    height: 2rem;
+}
+.username {
+    font-weight: 700;
+}
+.individual-chat-header{
+    background-color: var(--complementary-color);
+    height: 10%;
+}

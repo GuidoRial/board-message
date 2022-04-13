@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Sidebar.css'
 import Chat from "../Chat/Chat";
 import ConfigurationDataUser from "./ConfigurationDataUser/ConfigurationDataUser";
 
@@ -32,6 +33,7 @@ function Sidebar({ user, activeUser, myChats, setSelectedChat, selectedChat }) {
                     ))}
                 </div>
             )}
+
         </aside>
     );
 }

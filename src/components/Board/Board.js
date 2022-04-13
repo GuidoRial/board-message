@@ -23,6 +23,7 @@ function Board({ user, activeUser }) {
         if (activeUser) loadChats();
     }, [activeUser]);
 
+
     useEffect(() => {
         if (!user) {
             navigate("/login");
@@ -40,6 +41,7 @@ function Board({ user, activeUser }) {
     console.log(renderedChat);
 
     return (
+
         <div className="board-container">
             <section className="board">
                 <Sidebar
