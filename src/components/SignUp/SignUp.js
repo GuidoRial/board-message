@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-    clearInputs,
-    getUserByUsername,
-    linkStyle,
-    userInDatabase,
-} from "../../auxFunctions";
+import { clearInputs, linkStyle } from "../../auxFunctions";
 import "./SignUp.css";
 import { firebase, firestore } from "../../firebase";
 

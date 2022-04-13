@@ -5,17 +5,24 @@ import MainChats from "./MainChats/MainChats";
 import SendMessageForm from "./SendMessageForm/SendMessageForm";
 import Sidebar from "./Sidebar/Sidebar";
 import Header from "./Header/Header";
-import { firestore } from "../../firebase";
+import { getDocumentWithDocId, getMyChats } from "../../auxFunctions";
 
 function Board({ user, activeUser }) {
-    const [messagesFromDatabase, setMessagesFromDatabase ] = useState([])
-    const [msgUser, setMsgUser] = useState('')
-    const [newMessage, setNewMessage] = useState("");
     const [myChats, setMyChats] = useState([]); //Get me an array of chats where I'm involved
     const [recommendedUsers, setRecommendedUsers] = useState([]); //Get me a list of 10 people I haven't messaged
-    const [selectedChat, setSelectedChat] = useState({}); //On click, set this user as selectedChat and load this conversation, if there isn't any open an empty chat
-    const [openBurger, setOpenBurger] = useState(false); //On hamburguer click, toggle and show an aside where I can update this user's info or logout
+    const [selectedChat, setSelectedChat] = useState(""); //On click, set this user as selectedChat and load this conversation, if there isn't any open an empty chat
+    const [renderedChat, setRenderedChat] = useState(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const loadChats = async () => {
+            const response = await getMyChats(activeUser.userId);
+            setMyChats(response);
+        };
+
+        if (activeUser) loadChats();
+    }, [activeUser]);
+
 
     useEffect(() => {
         if (!user) {
@@ -23,15 +30,37 @@ function Board({ user, activeUser }) {
         }
     }, [user]);
 
+    useEffect(() => {
+        const getChatToRender = async () => {
+            const [thisChat] = await getDocumentWithDocId(selectedChat);
+            setRenderedChat(thisChat);
+        };
+        getChatToRender();
+    }, [selectedChat]);
+
+    console.log(renderedChat);
+
     return (
-        <section className="board">
-            <Sidebar user={user} activeUser={activeUser} className="sidebar"/>
-            <main className="individual-chat">
-                <Header activeUser={activeUser}/>
-                <MainChats/>
-                <SendMessageForm activeUser={activeUser}/>
-            </main>
-        </section>
+
+        <div className="board-container">
+            <section className="board">
+                <Sidebar
+                    user={user}
+                    activeUser={activeUser}
+                    myChats={myChats}
+                    setSelectedChat={setSelectedChat}
+                    selectedChat={selectedChat}
+                />
+                <main className="individual-chat">
+                    <Header
+                        activeUser={activeUser}
+                        selectedChat={selectedChat}
+                    />
+                    <MainChats selectedChat={selectedChat} />
+                    <SendMessageForm activeUser={activeUser} />
+                </main>
+            </section>
+        </div>
     );
 }
 
