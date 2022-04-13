@@ -8,6 +8,13 @@ const MainChats = () => {
     <div className="messages-container">
         <ReceivedMessage/>
         <SentMessage/>
+        <SentMessage/>
+        <ReceivedMessage/>
+        <SentMessage/>
+        <SentMessage/>
+        <SentMessage/>
+        <ReceivedMessage/>
+        <ReceivedMessage/>
     </div>
   )
 }
