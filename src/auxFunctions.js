@@ -1,4 +1,5 @@
 import { firestore } from "./firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export const linkStyle = {
     textDecoration: "none",
@@ -52,7 +53,16 @@ export const getMyChats = async (userId) => {
     return chat;
 };
 
-export const getDocumentWithDocId = async (docId) => {};
+export const getDocumentWithDocId = async (docId) => {
+    const result = await firestore.collection("messages").doc(docId).get();
+
+    const chat = result.docs.map((item) => ({
+        ...item.data(),
+        docId: item.id,
+    }));
+
+    return chat;
+};
 
 export async function getUserByUserId(userId) {
     const result = await firestore

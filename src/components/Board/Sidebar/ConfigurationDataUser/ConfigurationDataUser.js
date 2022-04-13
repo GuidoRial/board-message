@@ -10,8 +10,6 @@ const ConfigurationDataUser = ({ activeUser }) => {
     const [newPhoto, setNewPhoto] = useState(null);
     const [newName, setNewName] = useState("");
     const [newAbout, setNewAbout] = useState("");
-    //const [usernameAvailable, setUsernameAvailable] = useState(true);
-
     //Add user validation
 
     const updateProfile = (newPhoto, activeUser) => {

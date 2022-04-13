@@ -5,15 +5,15 @@ import MainChats from "./MainChats/MainChats";
 import SendMessageForm from "./SendMessageForm/SendMessageForm";
 import Sidebar from "./Sidebar/Sidebar";
 import Header from "./Header/Header";
-import { getMyChats } from "../../auxFunctions";
+import { getDocumentWithDocId, getMyChats } from "../../auxFunctions";
 
 function Board({ user, activeUser }) {
     const [myChats, setMyChats] = useState([]); //Get me an array of chats where I'm involved
     const [recommendedUsers, setRecommendedUsers] = useState([]); //Get me a list of 10 people I haven't messaged
     const [selectedChat, setSelectedChat] = useState(""); //On click, set this user as selectedChat and load this conversation, if there isn't any open an empty chat
-
+    const [renderedChat, setRenderedChat] = useState(null);
     const navigate = useNavigate();
-    console.log(selectedChat);
+
     useEffect(() => {
         const loadChats = async () => {
             const response = await getMyChats(activeUser.userId);
@@ -29,6 +29,16 @@ function Board({ user, activeUser }) {
         }
     }, [user]);
 
+    useEffect(() => {
+        const getChatToRender = async () => {
+            const [thisChat] = await getDocumentWithDocId(selectedChat);
+            setRenderedChat(thisChat);
+        };
+        getChatToRender();
+    }, [selectedChat]);
+
+    console.log(renderedChat);
+
     return (
         <div className="board-container">
             <section className="board">
@@ -40,8 +50,11 @@ function Board({ user, activeUser }) {
                     selectedChat={selectedChat}
                 />
                 <main className="individual-chat">
-                    <Header activeUser={activeUser} />
-                    <MainChats />
+                    <Header
+                        activeUser={activeUser}
+                        selectedChat={selectedChat}
+                    />
+                    <MainChats selectedChat={selectedChat} />
                     <SendMessageForm activeUser={activeUser} />
                 </main>
             </section>

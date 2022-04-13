@@ -1,6 +1,10 @@
-import React from "react";
+import { render } from "@testing-library/react";
+import React, { useEffect, useState } from "react";
+import { getDocumentWithDocId } from "../../../auxFunctions";
 
-function Header({ activeUser }) {
+function Header({ activeUser, selectedChat }) {
+
+
     return (
         <header className="individual-chat-header">
             <div className="selected-user">

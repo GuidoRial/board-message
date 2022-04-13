@@ -4,7 +4,6 @@ import ConfigurationDataUser from "./ConfigurationDataUser/ConfigurationDataUser
 
 function Sidebar({ user, activeUser, myChats, setSelectedChat, selectedChat }) {
     const [openBurger, setOpenBurger] = useState(false); //On hamburger click, toggle and show an aside where I can update this user's info or logout
-
     return (
         <aside className="history">
             <header className="search-container">

@@ -1,4 +1,4 @@
-import { connectAuthEmulator } from "firebase/auth";
+
 import React, { useEffect, useState } from "react";
 import {
     getFirstLetterOfUsername,
@@ -24,6 +24,7 @@ function Chat({ chat, setSelectedChat, selectedChat, activeUser }) {
                     (id) => id !== activeUser.userId
                 );
                 const [receiver] = await getUserByUserId(otherUserId);
+                
                 setUserName(receiver.username);
                 setProfilePicture(receiver.profilePicture);
                 const firstLetter = getFirstLetterOfUsername(receiver.username);
